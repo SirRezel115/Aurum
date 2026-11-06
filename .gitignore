@@ -1,0 +1,18 @@
+*.iml
+.gradle
+/local.properties
+/.idea/
+.DS_Store
+/build/
+*/build/
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+.artifacts/
+.kotlin/
+Aurun Music/
+*.apk
+*.png
+*.zip
+*.ttf

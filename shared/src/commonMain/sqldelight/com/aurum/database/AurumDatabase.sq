@@ -1,0 +1,68 @@
+CREATE TABLE IF NOT EXISTS CachedSong (
+    id TEXT NOT NULL PRIMARY KEY,
+    title TEXT NOT NULL,
+    artist TEXT NOT NULL,
+    album TEXT NOT NULL,
+    duration INTEGER NOT NULL,
+    uri TEXT NOT NULL,
+    album_art_uri TEXT,
+    date_added INTEGER NOT NULL DEFAULT 0,
+    is_favorite INTEGER NOT NULL DEFAULT 0
+);
+
+selectAllSongs:
+SELECT * FROM CachedSong ORDER BY title ASC;
+
+insertSong:
+INSERT OR REPLACE INTO CachedSong(id, title, artist, album, duration, uri, album_art_uri, date_added, is_favorite)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+deleteAllSongs:
+DELETE FROM CachedSong;
+
+deleteSong:
+DELETE FROM CachedSong WHERE id = ?;
+
+updateFavorite:
+UPDATE CachedSong SET is_favorite = ? WHERE id = ?;
+
+updateAlbumMetadata:
+UPDATE CachedSong SET album = ?, artist = ? WHERE album = ?;
+
+updateAlbumMetadataAndArtwork:
+UPDATE CachedSong SET album = ?, artist = ?, album_art_uri = ? WHERE album = ?;
+
+selectFavorites:
+SELECT * FROM CachedSong WHERE is_favorite = 1 ORDER BY title ASC;
+
+CREATE TABLE IF NOT EXISTS Playlist (
+    id TEXT NOT NULL PRIMARY KEY,
+    name TEXT NOT NULL,
+    created_at INTEGER NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS PlaylistSong (
+    playlist_id TEXT NOT NULL REFERENCES Playlist(id) ON DELETE CASCADE,
+    song_id TEXT NOT NULL,
+    PRIMARY KEY (playlist_id, song_id)
+);
+
+selectAllPlaylists:
+SELECT * FROM Playlist;
+
+insertPlaylist:
+INSERT OR REPLACE INTO Playlist(id, name, created_at) VALUES (?, ?, ?);
+
+deletePlaylist:
+DELETE FROM Playlist WHERE id = ?;
+
+selectSongsForPlaylist:
+SELECT CachedSong.* FROM CachedSong
+INNER JOIN PlaylistSong ON CachedSong.id = PlaylistSong.song_id
+WHERE PlaylistSong.playlist_id = ?;
+
+insertPlaylistSong:
+INSERT OR REPLACE INTO PlaylistSong(playlist_id, song_id) VALUES (?, ?);
+
+deletePlaylistSong:
+DELETE FROM PlaylistSong WHERE playlist_id = ? AND song_id = ?;

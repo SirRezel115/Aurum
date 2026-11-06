@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0D0D0D"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center">
+
+    <!-- Track Information (Large) -->
+    <TextView
+        android:id="@+id/widget_song_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Aurum Music"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:singleLine="true"
+        android:ellipsize="end" />
+
+    <TextView
+        android:id="@+id/widget_song_artist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Select a track to play"
+        android:textColor="#C4CBD4"
+        android:textSize="14sp"
+        android:singleLine="true"
+        android:ellipsize="end" />
+
+    <!-- Custom Waveform Progress Bar Image -->
+    <ImageView
+        android:id="@+id/widget_waveform_image"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginTop="12dp"
+        android:scaleType="fitXY"
+        android:contentDescription="Waveform Progress Bar" />
+
+    <!-- Time Indicator Row -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp">
+
+        <TextView
+            android:id="@+id/widget_text_position"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:text="0:00"
+            android:textColor="#8C7A5A"
+            android:textSize="11sp" />
+
+        <TextView
+            android:id="@+id/widget_text_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="0:00"
+            android:textColor="#8C7A5A"
+            android:textSize="11sp" />
+    </RelativeLayout>
+
+    <!-- Playback Controls Row (Previous, Play/Pause, Next) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/widget_btn_prev"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_media_previous"
+            android:contentDescription="Previous" />
+
+        <ImageButton
+            android:id="@+id/widget_btn_play_pause"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_media_play"
+            android:contentDescription="Play/Pause" />
+
+        <ImageButton
+            android:id="@+id/widget_btn_next"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_media_next"
+            android:contentDescription="Next" />
+
+    </LinearLayout>
+
+</LinearLayout>

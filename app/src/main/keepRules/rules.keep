@@ -1,0 +1,34 @@
+# Aurum R8 & Proguard Keep Rules
+
+# ── SQLDelight & SQLite Driver ──────────────────────────────────
+-keep class com.aurum.database.** { *; }
+-keep class app.cash.sqldelight.** { *; }
+-dontwarn app.cash.sqldelight.**
+
+# ── Koin Dependency Injection ────────────────────────────────────
+-keep class com.aurum.di.** { *; }
+-keepclassmembers class * {
+    @org.koin.core.annotation.* <fields>;
+    @org.koin.core.annotation.* <methods>;
+}
+
+# ── Media3 / ExoPlayer ──────────────────────────────────────────
+-keep class androidx.media3.common.MediaMetadata { *; }
+-keep class androidx.media3.session.MediaSessionService { *; }
+-keep class androidx.media3.session.MediaSession { *; }
+-dontwarn androidx.media3.**
+
+# ── Coil Image Loader ───────────────────────────────────────────
+-keep class coil3.ImageLoader { *; }
+-keep class coil3.compose.** { *; }
+-dontwarn coil3.**
+
+# ── Kotlin Coroutines & Serialization ────────────────────────────
+-keepclassmembers class * {
+    *** Companion;
+}
+-keepclassmembers class kotlinx.coroutines.** { *; }
+-dontwarn kotlinx.coroutines.**
+
+# ── Data Models ────────────────────────────────────────────────
+-keep class com.aurum.data.model.** { *; }
